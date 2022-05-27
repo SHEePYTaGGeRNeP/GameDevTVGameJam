@@ -45,6 +45,7 @@ namespace Assets.Scripts.GamePlay.Collisions
             if (element == null) return false;
             if (element.ElementalValue == null)
             {
+                //remove line if "NONE" walls shouldn't allow passage
                 if (this._elementToIgnore == null) return true;
                 return false;
             }
