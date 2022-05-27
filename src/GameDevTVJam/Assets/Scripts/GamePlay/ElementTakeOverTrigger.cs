@@ -11,8 +11,8 @@ namespace Assets.Scripts.GamePlay
     public class ElementTakeOverTrigger : MonoBehaviour
     {
         [SerializeField]
-        private ElementEnum _element;
-        public ElementEnum Element { get => _element; set => _element = value; }
+        private Trait _element;
+        public Trait Element { get => _element; set => _element = value; }
 
         void OnTriggerEnter(Collider collider)
         {
@@ -37,12 +37,18 @@ namespace Assets.Scripts.GamePlay
         public void SwitchElement(GameObject gameObject)
         {
             var element = gameObject.GetComponentInChildren<Element>();
-            if (element == null || !element.AllowSwitching || element.ElementalValue == Element)
+            if (element == null) return;
+            if (!element.AllowSwitching) return;
+            if (element.ElementalValue == null && this._element == null) return;
+            if (element.ElementalValue != null && this._element != null)
             {
-                return;
+                if (element.ElementalValue.type == this._element.type)
+                {
+                    return;
+                }
             }
 
-            element.ElementalValue = this.Element;
+            element.ElementalValue = this._element;
             element.ClearIgnoredColliders();
         }
     }

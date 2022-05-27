@@ -14,8 +14,8 @@ namespace Assets.Scripts.GamePlay.Collisions
 
 
         [SerializeField]
-        private ElementEnum _elementToIgnore;
-        public ElementEnum ElementToIgnore { get => _elementToIgnore; set => _elementToIgnore = value; }
+        private Trait _elementToIgnore;
+        public Trait ElementToIgnore { get => _elementToIgnore; set => _elementToIgnore = value; }
 
         private void Awake()
         {
@@ -42,10 +42,15 @@ namespace Assets.Scripts.GamePlay.Collisions
         public bool AllowPass(GameObject gameObject, out Element element)
         {
             element = gameObject.GetComponentInChildren<Element>();
-            if (element == null || element.ElementalValue != this._elementToIgnore || this._elementToIgnore == ElementEnum.None)
+            if (element == null) return false;
+            if (element.ElementalValue == null)
             {
+                //remove line if "NONE" walls shouldn't allow passage
+                if (this._elementToIgnore == null) return true;
                 return false;
             }
+            if (this._elementToIgnore == null) return false;
+            if (element.ElementalValue.type != this._elementToIgnore.type) return false;
 
             return true;
         }
