@@ -7,7 +7,31 @@ using UnityEngine;
 
 public class NewTestScript
 {
-    private static ElementalWall CreateWall(ElementEnum element)
+    public static class TraitConstants
+    {
+        public static Trait fireTrait
+        {
+            get
+            {
+                Trait trait = ScriptableObject.CreateInstance<Trait>();
+                trait.type = "Fire";
+                trait.color = Color.red;
+                return trait;
+            }
+        }
+        public static Trait iceTrait
+        {
+            get
+            {
+                Trait trait = ScriptableObject.CreateInstance<Trait>();
+                trait.type = "Ice";
+                trait.color = Color.cyan;
+                return trait;
+            }
+        }
+    }
+
+    private static ElementalWall CreateWall(Trait element)
     {
         GameObject go = new GameObject();
         go.AddComponent<Collider>();
@@ -21,7 +45,7 @@ public class NewTestScript
     {
         // arrange
         var character = new GameObject();
-        var wall = CreateWall(ElementEnum.Fire);
+        var wall = CreateWall(TraitConstants.fireTrait);
 
         // act
         var allowed = wall.AllowPass(character, out var _);
@@ -31,14 +55,12 @@ public class NewTestScript
     }
 
     [Test]
-    [TestCase(ElementEnum.Cold, ElementEnum.Fire)]
-    [TestCase(ElementEnum.Fire, ElementEnum.Cold)]
-    [TestCase(ElementEnum.Cold, ElementEnum.None)]
-    [TestCase(ElementEnum.None, ElementEnum.Fire)]
-    [Parallelizable()]
-    public void AllowPass_WithCharacter_WithWrongElement_Should_ReturnFalse(ElementEnum characterElement, ElementEnum wallElement)  
+    public void AllowPass_WithCharacter_WithWrongElement_Should_ReturnFalse()  
     {
         // arrange
+        Trait characterElement, wallElement;
+        characterElement = TraitConstants.fireTrait;
+        wallElement = TraitConstants.iceTrait;
         var character = new GameObject().AddComponent<Element>();
         character.ElementalValue = characterElement;
         var wall = CreateWall(wallElement);
@@ -51,11 +73,12 @@ public class NewTestScript
     }
 
     [Test]
-    [TestCase(ElementEnum.Fire, ElementEnum.Fire)]
-    [TestCase(ElementEnum.Cold, ElementEnum.Cold)]
-    public void AllowPass_WithCharacter_WithCorrectElement_Should_ReturnTrue(ElementEnum characterElement, ElementEnum wallElement)
+    public void AllowPass_WithCharacter_WithCorrectElement_Should_ReturnTrue()
     {
         // arrange
+        Trait characterElement, wallElement;
+        characterElement = TraitConstants.iceTrait;
+        wallElement = TraitConstants.iceTrait;
         var character = new GameObject().AddComponent<Element>();
         character.ElementalValue = characterElement;
         var wall = CreateWall(wallElement);
@@ -72,18 +95,14 @@ public class NewTestScript
     {
         // arrange
         var character = new GameObject().AddComponent<Element>();
-        var wall = CreateWall(ElementEnum.None);
+        var wall = CreateWall(null);
 
         // act
-        var values = Enum.GetValues(typeof(ElementEnum)).Cast<ElementEnum>();
-        foreach (var val in values)
-        {
-            character.ElementalValue = val;
-            var allowed = wall.AllowPass(character.gameObject, out var _);
+        character.ElementalValue = TraitConstants.fireTrait;
+        var allowed = wall.AllowPass(character.gameObject, out var _);
 
-            // assert
-            Assert.False(allowed);
-        }
+        // assert
+        Assert.False(allowed);
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

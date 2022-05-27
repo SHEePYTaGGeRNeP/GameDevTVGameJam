@@ -15,8 +15,8 @@ namespace Assets.Scripts.GamePlay.Collisions
         private Collider2D _collider2D;
 
         [SerializeField]
-        private ElementEnum _elementalValue;
-        public ElementEnum ElementalValue { get => _elementalValue; set => _elementalValue = value; }
+        private Trait _elementalValue;
+        public Trait ElementalValue { get => _elementalValue; set => _elementalValue = value; }
 
         [SerializeField]
         private bool _allowSwitching;
