@@ -1,5 +1,8 @@
 using Assets.Scripts.GamePlay.Collisions;
 using NUnit.Framework;
+using System;
+using System.Linq;
+using System.Collections;
 using UnityEngine;
 
 public class NewTestScript
@@ -21,40 +24,66 @@ public class NewTestScript
         var wall = CreateWall(ElementEnum.Fire);
 
         // act
-        var allowed = wall.AllowPass(character);
+        var allowed = wall.AllowPass(character, out var _);
 
         // assert
         Assert.IsFalse(allowed);
     }
 
     [Test]
-    public void AllowPass_WithCharacter_WithWrongElement_Should_ReturnFalse()
+    [TestCase(ElementEnum.Cold, ElementEnum.Fire)]
+    [TestCase(ElementEnum.Fire, ElementEnum.Cold)]
+    [TestCase(ElementEnum.Cold, ElementEnum.None)]
+    [TestCase(ElementEnum.None, ElementEnum.Fire)]
+    [Parallelizable()]
+    public void AllowPass_WithCharacter_WithWrongElement_Should_ReturnFalse(ElementEnum characterElement, ElementEnum wallElement)  
     {
         // arrange
         var character = new GameObject().AddComponent<Element>();
-        character.ElementalValue = ElementEnum.Cold;
-        var wall = CreateWall(ElementEnum.Fire);
+        character.ElementalValue = characterElement;
+        var wall = CreateWall(wallElement);
 
         // act
-        var allowed = wall.AllowPass(character.gameObject);
+        var allowed = wall.AllowPass(character.gameObject, out var _);
 
         // assert
         Assert.IsFalse(allowed);
     }
 
     [Test]
-    public void AllowPass_WithCharacter_WithCorrectElement_Should_ReturnTrue()
+    [TestCase(ElementEnum.Fire, ElementEnum.Fire)]
+    [TestCase(ElementEnum.Cold, ElementEnum.Cold)]
+    public void AllowPass_WithCharacter_WithCorrectElement_Should_ReturnTrue(ElementEnum characterElement, ElementEnum wallElement)
     {
         // arrange
         var character = new GameObject().AddComponent<Element>();
-        character.ElementalValue = ElementEnum.Fire;
-        var wall = CreateWall(ElementEnum.Fire);
+        character.ElementalValue = characterElement;
+        var wall = CreateWall(wallElement);
 
         // act
-        var allowed = wall.AllowPass(character.gameObject);
+        var allowed = wall.AllowPass(character.gameObject, out var _);
 
         // assert
         Assert.IsTrue(allowed);
+    }
+
+    [Test]
+    public void AllowPass_With_ElementalNoneWall_Should_ReturnFalse()
+    {
+        // arrange
+        var character = new GameObject().AddComponent<Element>();
+        var wall = CreateWall(ElementEnum.None);
+
+        // act
+        var values = Enum.GetValues(typeof(ElementEnum)).Cast<ElementEnum>();
+        foreach (var val in values)
+        {
+            character.ElementalValue = val;
+            var allowed = wall.AllowPass(character.gameObject, out var _);
+
+            // assert
+            Assert.False(allowed);
+        }
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

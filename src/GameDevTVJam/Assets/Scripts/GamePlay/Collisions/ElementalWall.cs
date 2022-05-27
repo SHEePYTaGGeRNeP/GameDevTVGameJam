@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.GamePlay.Collisions
 {
-    [RequireComponent(typeof(Collider))]
     public class ElementalWall : MonoBehaviour
     {
         private Collider _collider;
         private Collider2D _collider2D;
+
 
         [SerializeField]
         private ElementEnum _elementToIgnore;
@@ -25,28 +25,24 @@ namespace Assets.Scripts.GamePlay.Collisions
 
         void OnCollisionEnter(Collision collision)
         {
-            if (!AllowPass(collision.gameObject))
+            if (AllowPass(collision.gameObject, out var element))
             {
-                return;
+                element.AddIgnoreCollider(this._collider);
             }
-
-            Physics.IgnoreCollision(collision.collider, this._collider);
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!AllowPass(collision.gameObject))
+            if (AllowPass(collision.gameObject, out var element))
             {
-                return;
+                element.AddIgnoreCollider(this._collider2D);
             }
-
-            Physics2D.IgnoreCollision(collision.collider, this._collider2D);
         }
 
-        public bool AllowPass(GameObject gameObject)
+        public bool AllowPass(GameObject gameObject, out Element element)
         {
-            var element = gameObject.GetComponentInChildren<Element>();
-            if (element == null || element.ElementalValue != _elementToIgnore)
+            element = gameObject.GetComponentInChildren<Element>();
+            if (element == null || element.ElementalValue != this._elementToIgnore || this._elementToIgnore == ElementEnum.None)
             {
                 return false;
             }
