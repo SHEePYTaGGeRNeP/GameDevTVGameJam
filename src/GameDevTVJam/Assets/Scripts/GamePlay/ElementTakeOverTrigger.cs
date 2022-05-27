@@ -38,17 +38,17 @@ namespace Assets.Scripts.GamePlay
         {
             var element = gameObject.GetComponentInChildren<Element>();
             if (element == null) return;
-            if (this.Element == null) return;
             if (!element.AllowSwitching) return;
-            if (element.ElementalValue != null)
+            if (element.ElementalValue == null && this._element == null) return;
+            if (element.ElementalValue != null && this._element != null)
             {
-                if (element.ElementalValue.type == Element.type)
+                if (element.ElementalValue.type == this._element.type)
                 {
                     return;
                 }
             }
 
-            element.ElementalValue = this.Element;
+            element.ElementalValue = this._element;
             element.ClearIgnoredColliders();
         }
     }
