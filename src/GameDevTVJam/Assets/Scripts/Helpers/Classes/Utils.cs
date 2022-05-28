@@ -257,6 +257,32 @@ public static class Utils
         }
     }
 
+
+    public static void FovAction(Vector3 forward, int nrOfRays, float fov, Action<Vector2, int> raycastAction)
+    {
+        float angleAdd = fov / (nrOfRays - 1);
+        // first left then right.            
+        bool secondRay = false;
+        float currentAngle = 0;
+        // we first raycast forwards then at an angle for the left and the right.
+        for (int i = 0; i < nrOfRays; i++)
+        {
+            Vector3 direction = Quaternion.AngleAxis(secondRay ? currentAngle : -currentAngle, Vector3.forward) * forward;
+
+            raycastAction(direction, i);
+
+            if (i == 0)
+                currentAngle += angleAdd;
+            else if (i > 0 && !secondRay)
+                secondRay = true;
+            else
+            {
+                secondRay = false;
+                currentAngle += angleAdd;
+            }
+        }
+    }
+
     /// <summary>
     /// Returns Angle. Left is negative. Right is positive.
     /// </summary>

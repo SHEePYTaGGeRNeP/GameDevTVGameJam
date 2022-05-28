@@ -14,24 +14,42 @@ namespace Assets.Scripts.GamePlay
         private Trait _element;
         public Trait Element { get => _element; set => _element = value; }
 
+        [SerializeField]
+        private bool _listenToTrigger = true;
+
+        [SerializeField]
+        private bool _listenToCollision = true;
+
         void OnTriggerEnter(Collider collider)
         {
-            SwitchElement(collider.gameObject);
+            if (_listenToTrigger)
+            {
+                this.SwitchElement(collider.gameObject);
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collider)
         {
-            SwitchElement(collider.gameObject);
+            if (_listenToTrigger)
+            {
+                this.SwitchElement(collider.gameObject);
+            }
         }
 
         void OnCollisionEnter(Collision collision)
         {
-            SwitchElement(collision.gameObject);
+            if (_listenToCollision)
+            {
+                this.SwitchElement(collision.gameObject);
+            }
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            SwitchElement(collision.gameObject);
+            if (_listenToCollision)
+            {
+                this.SwitchElement(collision.gameObject);
+            }
         }
 
         public void SwitchElement(GameObject gameObject)
