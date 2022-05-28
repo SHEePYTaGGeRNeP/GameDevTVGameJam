@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   blockedMask:
     serializedVersion: 2
     m_Bits: 0
