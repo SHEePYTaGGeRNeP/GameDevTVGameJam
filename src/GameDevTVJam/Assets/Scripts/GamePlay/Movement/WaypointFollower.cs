@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GamePlay.Movement
 {
-    public class WaypointFollower : MonoBehaviour
+    public class WaypointFollower : MovementBase
     {
         [SerializeField]
         private List<Transform> _waypoints;
@@ -15,16 +15,14 @@ namespace Assets.Scripts.GamePlay.Movement
         [SerializeField]
         private float _distanceBeforeReached = 1f;
 
-
-        [Header("Control options")]
+        [Header("Debugging Waypoint Follower")]
         [SerializeField]
-        private float _speed;
-
         private Transform _nextWaypoint;
 
         private void Awake()
         {
             _nextWaypoint = _waypoints[0];
+            targetPosition = _nextWaypoint.position;
         }
 
         private void Update()
@@ -33,7 +31,7 @@ namespace Assets.Scripts.GamePlay.Movement
             {
                 NextWaypoint();
             }
-            MoveToWaypoint();
+            MoveToTargetPosition();
         }
 
         private void NextWaypoint()
@@ -46,12 +44,7 @@ namespace Assets.Scripts.GamePlay.Movement
             {
                 _nextWaypoint = _waypoints[_waypoints.IndexOf(_nextWaypoint) + 1];
             }
-        }
-
-        private void MoveToWaypoint()
-        {
-            float step = this._speed * Time.deltaTime;
-            this.transform.position = Vector2.MoveTowards(this.transform.position, this._nextWaypoint.position, step);
+            targetPosition = _nextWaypoint.position;
         }
 
         private void OnDrawGizmosSelected()

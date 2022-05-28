@@ -13,7 +13,7 @@ namespace Assets.Scripts.AI.Sensors
         [SerializeField]
         protected bool collisionSense;
 
-        [Header("Debug TouchSensor3D")]
+        [Header("Debug TouchSensor")]
         [SerializeField]
         protected int touchCount;
 
