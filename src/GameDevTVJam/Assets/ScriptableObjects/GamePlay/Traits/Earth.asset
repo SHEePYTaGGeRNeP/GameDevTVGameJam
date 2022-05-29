@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Earth
   m_EditorClassIdentifier: 
   type: Earth
-  color: {r: 0.3139314, g: 0.6981132, b: 0.26014596, a: 0}
+  color: {r: 0.3139314, g: 0.6981132, b: 0.26014596, a: 1}

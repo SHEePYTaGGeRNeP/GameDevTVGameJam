@@ -67,6 +67,11 @@ namespace Assets.Scripts.GamePlay
             }
 
             element.ElementalValue = this._element;
+            var player = gameObject.GetComponentInParent<Player>() ;
+            if (player != null)
+            {
+                player.NewTrait(this._element);
+            }
             element.ClearIgnoredColliders();
         }
     }

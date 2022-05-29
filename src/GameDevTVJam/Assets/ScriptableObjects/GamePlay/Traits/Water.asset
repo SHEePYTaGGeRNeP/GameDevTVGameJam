@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   type: Water
-  color: {r: 0.3254717, g: 0.4785483, b: 1, a: 0}
+  color: {r: 0.3254717, g: 0.4785483, b: 1, a: 1}
