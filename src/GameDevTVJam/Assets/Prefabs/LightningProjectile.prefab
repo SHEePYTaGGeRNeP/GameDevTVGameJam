@@ -151,6 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c2982b9f5e9e4b80b2336cef11d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _element: {fileID: 11400000, guid: 0ef6446c9995f994f9062a2d62b712b4, type: 2}
+  _element: {fileID: 11400000, guid: 81915c7c9e0311d4aa7e711428ccd7a7, type: 2}
   _listenToTrigger: 1
   _listenToCollision: 1

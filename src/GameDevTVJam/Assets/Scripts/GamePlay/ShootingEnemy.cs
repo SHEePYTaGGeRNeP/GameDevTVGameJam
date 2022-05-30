@@ -20,6 +20,8 @@ namespace Assets.Scripts.GamePlay
         [SerializeField]
         private float _rotationSpeed = 5f;
 
+        [SerializeField]
+        private Trait trait;
 
         private void Update()
         {
@@ -38,7 +40,7 @@ namespace Assets.Scripts.GamePlay
                 float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
                 Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
                 transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * _rotationSpeed);
-                _gun.Shoot();
+                _gun.Shoot(trait);
             }
         }
     }

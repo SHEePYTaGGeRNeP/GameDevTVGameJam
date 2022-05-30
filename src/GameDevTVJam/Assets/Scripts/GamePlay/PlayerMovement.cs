@@ -21,8 +21,9 @@ namespace Assets.Scripts.GamePlay
         {
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
-
-            this.transform.position += new Vector3(x * this._speed * Time.deltaTime, y * this._speed * Time.deltaTime, 0);
+            Vector2 moveDir = new Vector2(x, y);
+            if (Mathf.Abs(x) + Mathf.Abs(y) > 1) moveDir = moveDir.normalized;
+            this._rigidbody.velocity = new Vector2(moveDir.x * this._speed, moveDir.y * this._speed);
         }
     }
 }
