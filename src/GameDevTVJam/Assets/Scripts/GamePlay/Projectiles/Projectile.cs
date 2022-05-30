@@ -19,9 +19,20 @@ namespace Assets.Scripts.GamePlay.Projectiles
 
         private ElementTakeOverTrigger _elementTOT;
 
+
         private void Start()
         {
             this._elementTOT = this.gameObject.GetComponent<ElementTakeOverTrigger>();
+        }
+
+        public void SetElement(Trait trait)
+        {
+            if(this._elementTOT == null)
+            {
+                this._elementTOT = this.gameObject.GetComponent<ElementTakeOverTrigger>();
+            }
+
+            this._elementTOT.Element = trait;
         }
 
 
@@ -38,7 +49,6 @@ namespace Assets.Scripts.GamePlay.Projectiles
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            // do some damage?
             if(collision.gameObject.tag == "Player")
             {
                 collision.gameObject.GetComponent<Player>().Hit_Damage(this._elementTOT.Element);

@@ -5527,7 +5527,7 @@ GameObject:
   - component: {fileID: 370563625}
   - component: {fileID: 370563628}
   m_Layer: 6
-  m_Name: Gun Enemy
+  m_Name: Earth Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5565,6 +5565,7 @@ MonoBehaviour:
   _gun: {fileID: 370563626}
   _sensor: {fileID: 421570535}
   _rotationSpeed: 5
+  trait: {fileID: 11400000, guid: 81915c7c9e0311d4aa7e711428ccd7a7, type: 2}
 --- !u!114 &370563626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6545,7 +6546,7 @@ GameObject:
   - component: {fileID: 1001066557}
   - component: {fileID: 1001066556}
   m_Layer: 0
-  m_Name: Cold Wall (3)
+  m_Name: Earth Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6578,7 +6579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00c929abe0d12c4bbda53d2132d0cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _elementToIgnore: {fileID: 11400000, guid: 0ef6446c9995f994f9062a2d62b712b4, type: 2}
+  _elementToIgnore: {fileID: 11400000, guid: 81915c7c9e0311d4aa7e711428ccd7a7, type: 2}
 --- !u!61 &1001066557
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6647,7 +6648,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.70585346, a: 1}
+  m_Color: {r: 0.6226415, g: 0.42314938, b: 0.22614807, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -19137,7 +19138,7 @@ GameObject:
   - component: {fileID: 1982045653}
   - component: {fileID: 1982045652}
   m_Layer: 0
-  m_Name: Cold Wall (2)
+  m_Name: Earth Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19170,7 +19171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00c929abe0d12c4bbda53d2132d0cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _elementToIgnore: {fileID: 11400000, guid: 0ef6446c9995f994f9062a2d62b712b4, type: 2}
+  _elementToIgnore: {fileID: 11400000, guid: 81915c7c9e0311d4aa7e711428ccd7a7, type: 2}
 --- !u!61 &1982045653
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19239,7 +19240,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.70585346, a: 1}
+  m_Color: {r: 0.6226415, g: 0.42314938, b: 0.22614807, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

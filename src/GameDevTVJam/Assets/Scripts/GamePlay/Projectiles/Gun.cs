@@ -24,7 +24,7 @@ namespace Assets.Scripts.GamePlay.Projectiles
         [SerializeField]
         private float _remainingCooldown = 0;
 
-        public void Shoot()
+        public void Shoot(Trait trait)
         {
             _remainingCooldown = Mathf.Max(_remainingCooldown - Time.deltaTime, 0);
             if (_remainingCooldown > 0)
@@ -36,6 +36,8 @@ namespace Assets.Scripts.GamePlay.Projectiles
             var projectile = GameObject.Instantiate(_projectilePrefab, _projectileSpawnLocation.position, _parent.rotation);
             projectile.CreatedBy = this.gameObject;
             projectile.transform.right = _projectileSpawnLocation.right;
+            projectile.SetElement(trait);
+            projectile.GetComponent<SpriteRenderer>().color = trait.color;
         }
 
     }

@@ -47,8 +47,12 @@ namespace Assets.Scripts.GamePlay
         private void Hit_Transformation(Trait trait)
         {
             this.gameManager.UpdateMANA(-1);
+            Debug.Log("hit: " + this.gameManager.TransformationMana);
+            Debug.Log("hit-trait: " + trait.name);
+
             if (this.gameManager.TransformationMana <= 0)
             {
+                Debug.Log("set new trait?");
                 this.NewTrait(trait);
             }
         }
