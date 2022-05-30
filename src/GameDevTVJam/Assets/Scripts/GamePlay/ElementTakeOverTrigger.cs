@@ -11,38 +11,67 @@ namespace Assets.Scripts.GamePlay
     public class ElementTakeOverTrigger : MonoBehaviour
     {
         [SerializeField]
-        private ElementEnum _element;
-        public ElementEnum Element { get => _element; set => _element = value; }
+        private Trait _element;
+        public Trait Element { get => _element; set => _element = value; }
+
+        [SerializeField]
+        private bool _listenToTrigger = true;
+
+        [SerializeField]
+        private bool _listenToCollision = true;
 
         void OnTriggerEnter(Collider collider)
         {
-            SwitchElement(collider.gameObject);
+            if (_listenToTrigger)
+            {
+                this.SwitchElement(collider.gameObject);
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collider)
         {
-            SwitchElement(collider.gameObject);
+            if (_listenToTrigger)
+            {
+                this.SwitchElement(collider.gameObject);
+            }
         }
 
         void OnCollisionEnter(Collision collision)
         {
-            SwitchElement(collision.gameObject);
+            if (_listenToCollision)
+            {
+                this.SwitchElement(collision.gameObject);
+            }
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            SwitchElement(collision.gameObject);
+            if (_listenToCollision)
+            {
+                this.SwitchElement(collision.gameObject);
+            }
         }
 
         public void SwitchElement(GameObject gameObject)
         {
             var element = gameObject.GetComponentInChildren<Element>();
-            if (element == null || !element.AllowSwitching || element.ElementalValue == Element)
+            if (element == null) return;
+            if (!element.AllowSwitching) return;
+            if (element.ElementalValue == null && this._element == null) return;
+            if (element.ElementalValue != null && this._element != null)
             {
-                return;
+                if (element.ElementalValue.type == this._element.type)
+                {
+                    return;
+                }
             }
 
-            element.ElementalValue = this.Element;
+            element.ElementalValue = this._element;
+            var player = gameObject.GetComponentInParent<Player>() ;
+            if (player != null)
+            {
+                player.NewTrait(this._element);
+            }
             element.ClearIgnoredColliders();
         }
     }
