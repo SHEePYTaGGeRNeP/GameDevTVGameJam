@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b724fb6c4a445c41b2e914b7c3614e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 0}
 --- !u!1 &429828431
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _element: {fileID: 0}
+  _listenToTrigger: 1
+  _listenToCollision: 1
 --- !u!58 &772462427
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6853,6 +6856,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _element: {fileID: 11400000, guid: 419a7439fb89c0140a9b92b8d52d66d6, type: 2}
+  _listenToTrigger: 1
+  _listenToCollision: 1
 --- !u!58 &1554772716
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7204,6 +7209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _element: {fileID: 11400000, guid: 3b28cc4e955810a4b8cb6fda7daae013, type: 2}
+  _listenToTrigger: 1
+  _listenToCollision: 1
 --- !u!58 &1718489581
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7305,13 +7312,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605758eaf05618340b93df9ff65fd1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lineColor: {r: 0, g: 0, b: 0, a: 0}
+  _speed: 2.5
+  _targetPosition: {x: 0, y: 0, z: 0}
   _waypoints:
   - {fileID: 1691127443}
   - {fileID: 429828432}
   - {fileID: 1772569540}
   - {fileID: 250365978}
   _distanceBeforeReached: 0.1
-  _speed: 2.5
+  _nextWaypoint: {fileID: 0}
 --- !u!114 &1718489585
 MonoBehaviour:
   m_ObjectHideFlags: 0

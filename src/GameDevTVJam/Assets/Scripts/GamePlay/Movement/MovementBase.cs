@@ -21,6 +21,25 @@ namespace Assets.Scripts.GamePlay.Movement
         private Vector3 _targetPosition;
         protected Vector3 targetPosition { get => _targetPosition; set => _targetPosition = value; }
 
+        Rigidbody2D rb;
+
+        public void Start()
+        {
+            this.rb = this.gameObject.GetComponent<Rigidbody2D>();
+        }
+
+        protected void Halt()
+        {
+            Vector2 velocity;
+            if ((velocity = this.rb.velocity) != Vector2.zero)
+            {
+                velocity = Vector2.zero;
+                this.rb.velocity = velocity;
+                Debug.Log(velocity);
+            }
+
+        }
+
         protected void MoveToTargetPosition()
         {
             if (_targetPosition == null)
@@ -28,8 +47,11 @@ namespace Assets.Scripts.GamePlay.Movement
                 return;
             }
 
-            float step = this._speed * Time.deltaTime;
-            this.transform.position = Vector2.MoveTowards(this.transform.position, this.targetPosition, step);
+            //float step = this._speed * Time.deltaTime;
+            // Vector2.MoveTowards(this.transform.position, this.targetPosition, step);
+            
+            Vector2 dir = this.targetPosition - this.transform.position;
+            if(dir.magnitude > 0.3f) this.rb.velocity = dir.normalized * this._speed;
         }
 
         private void OnDrawGizmosSelected()

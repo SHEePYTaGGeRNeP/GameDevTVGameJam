@@ -17,6 +17,7 @@ namespace Assets.Scripts.GamePlay.Movement
         {
             if (_playerSensor.Player == null)
             {
+                Halt();
                 return;
             }
             targetPosition = _playerSensor.Player.transform.position;

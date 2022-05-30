@@ -310,8 +310,8 @@ MonoBehaviour:
   combinedMask:
     serializedVersion: 2
     m_Bits: 0
-  debug: 1
-  debugOnlyWhenSelected: 0
+  debug: 0
+  debugOnlyWhenSelected: 1
   debugOnlyOnImportantValues: 0
   triggerSense: 1
   collisionSense: 0
@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 337505106}
   - component: {fileID: 337505105}
   - component: {fileID: 337505110}
+  - component: {fileID: 337505111}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -505,6 +506,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 360666940}
+--- !u!95 &337505111
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337505103}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67c51bcd445b03845ae5aec99a62978c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &360666937
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +704,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -693,7 +714,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -746,7 +767,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -862,7 +883,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.075
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1195,7 +1216,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -0.2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1248,7 +1269,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 10
+    type: 20
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -1320,7 +1341,7 @@ ParticleSystem:
     m_MeshRenderer: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
     m_Sprite: {fileID: 0}
-    m_SpriteRenderer: {fileID: 0}
+    m_SpriteRenderer: {fileID: 337505109}
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
@@ -1331,11 +1352,11 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0
-    sphericalDirectionAmount: 0
+    randomDirectionAmount: 0.2
+    sphericalDirectionAmount: 0.2
     randomPositionAmount: 0
     radius:
-      value: 0.25
+      value: 0.05
       mode: 0
       spread: 0
       speed:
@@ -1454,7 +1475,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3280,7 +3301,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 100
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3659,7 +3680,7 @@ ParticleSystem:
     positionAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.01
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5349,6 +5370,7 @@ GameObject:
   - component: {fileID: 370563627}
   - component: {fileID: 370563626}
   - component: {fileID: 370563625}
+  - component: {fileID: 370563628}
   m_Layer: 6
   m_Name: Gun Enemy
   m_TagString: Untagged
@@ -5403,7 +5425,7 @@ MonoBehaviour:
   _parent: {fileID: 370563624}
   _projectilePrefab: {fileID: 6124572725248266932, guid: 114f22ea75acb1c4eb545a8fabdaf0a9, type: 3}
   _projectileSpawnLocation: {fileID: 1650846171}
-  _reloadTime: 0.4
+  _reloadTime: 1
   _remainingCooldown: 1
 --- !u!212 &370563627
 SpriteRenderer:
@@ -5446,7 +5468,7 @@ SpriteRenderer:
   m_SortingLayerID: -958190049
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5457,6 +5479,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &370563628
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370563623}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67c51bcd445b03845ae5aec99a62978c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &421570533
 GameObject:
   m_ObjectHideFlags: 0
@@ -5511,8 +5553,8 @@ MonoBehaviour:
   combinedMask:
     serializedVersion: 2
     m_Bits: 0
-  debug: 1
-  debugOnlyWhenSelected: 0
+  debug: 0
+  debugOnlyWhenSelected: 1
   debugOnlyOnImportantValues: 0
   _parentObject: {fileID: 370563624}
   fov: 360
@@ -17049,6 +17091,8 @@ GameObject:
   - component: {fileID: 1554772720}
   - component: {fileID: 1554772719}
   - component: {fileID: 1554772718}
+  - component: {fileID: 1554772721}
+  - component: {fileID: 1554772722}
   m_Layer: 6
   m_Name: Water enemy
   m_TagString: Untagged
@@ -17207,9 +17251,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lineColor: {r: 0, g: 0.03224659, b: 1, a: 0}
-  _speed: 3
+  _speed: 1
   _targetPosition: {x: 0, y: 0, z: 0}
   _playerSensor: {fileID: 323057034}
+--- !u!95 &1554772721
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554772713}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67c51bcd445b03845ae5aec99a62978c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &1554772722
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554772713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1619498666
 GameObject:
   m_ObjectHideFlags: 0
@@ -17614,6 +17694,7 @@ GameObject:
   - component: {fileID: 1718489584}
   - component: {fileID: 1718489583}
   - component: {fileID: 1718489585}
+  - component: {fileID: 1718489586}
   m_Layer: 6
   m_Name: Fire enemy
   m_TagString: Untagged
@@ -17780,6 +17861,26 @@ MonoBehaviour:
   _allowSwitching: 0
   _ignoredColliders: []
   _ignoredColliders2D: []
+--- !u!95 &1718489586
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718489578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67c51bcd445b03845ae5aec99a62978c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1721241064
 GameObject:
   m_ObjectHideFlags: 0
