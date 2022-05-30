@@ -49,7 +49,7 @@ namespace Assets.Scripts.GamePlay
             this.gameManager.UpdateMANA(-1);
             if (this.gameManager.TransformationMana <= 0)
             {
-                this.element.ElementalValue = trait;
+                this.NewTrait(trait);
             }
         }
 
