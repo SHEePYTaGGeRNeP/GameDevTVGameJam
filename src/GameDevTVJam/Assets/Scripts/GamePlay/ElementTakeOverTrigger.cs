@@ -14,6 +14,7 @@ namespace Assets.Scripts.GamePlay
         private Trait _element;
         public Trait Element { get => _element; set => _element = value; }
 
+        /*
         [SerializeField]
         private bool _listenToTrigger = true;
 
@@ -73,6 +74,6 @@ namespace Assets.Scripts.GamePlay
                 player.NewTrait(this._element);
             }
             element.ClearIgnoredColliders();
-        }
+        }*/
     }
 }
