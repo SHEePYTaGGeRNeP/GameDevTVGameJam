@@ -11,6 +11,8 @@ namespace Assets.Scripts.GamePlay
         [SerializeField]
         Player _player;
 
+        public Player CurrPlayer { get { return this._player; } }
+
         [SerializeField]
         int _health = 3;
         [SerializeField]
@@ -59,6 +61,8 @@ namespace Assets.Scripts.GamePlay
         public void UpdateKeys(int val)
         {
             this._uiManager.UpdateKeys(this._keys, val);
+
+            if(this._keys == val) SceneManager.LoadScene(2, LoadSceneMode.Single);
         }
     }
 }

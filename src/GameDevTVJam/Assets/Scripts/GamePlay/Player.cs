@@ -33,19 +33,24 @@ namespace Assets.Scripts.GamePlay
             settings.startColor = new ParticleSystem.MinMaxGradient(trait.color);
         }
 
-        public void Hit_Damage(Trait trait)
+        public void Hit_Damage(Transform position, Trait trait, out bool takeOver)
         {
-            if(this.element.ElementalValue != trait)
+            takeOver = false;
+            if (this.element.ElementalValue != trait)
             {
-                Hit_Transformation(trait);
+                Hit_Transformation(position, trait, out takeOver);
+
+                Debug.Log("takeover (damage):" + takeOver);
                 return;
             }
 
             this.gameManager.UpdateHP(-1);
         }
 
-        private void Hit_Transformation(Trait trait)
+        private void Hit_Transformation(Transform position, Trait trait, out bool takeOver)
         {
+            takeOver = false;
+            Debug.Log("pre-hit: " + this.gameManager.TransformationMana);
             this.gameManager.UpdateMANA(-1);
             Debug.Log("hit: " + this.gameManager.TransformationMana);
             Debug.Log("hit-trait: " + trait.name);
@@ -54,6 +59,8 @@ namespace Assets.Scripts.GamePlay
             {
                 Debug.Log("set new trait?");
                 this.NewTrait(trait);
+                takeOver = true;
+                Debug.Log("takeover (damage):" + takeOver);
             }
         }
 
