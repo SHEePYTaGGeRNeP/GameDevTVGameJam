@@ -51,7 +51,17 @@ namespace Assets.Scripts.GamePlay.Projectiles
         {
             if(collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<Player>().Hit_Damage(this._elementTOT.Element);
+                bool deleteOriginal;
+                Player player = collision.gameObject.GetComponent<Player>();
+                player.Hit_Damage(this.CreatedBy.transform, this._elementTOT.Element, out deleteOriginal);
+
+                if (deleteOriginal)
+                {
+                    player.gameObject.transform.position = this.CreatedBy.transform.position;
+                    this.CreatedBy.gameObject.SetActive(false);
+                    Debug.Log("FKAOWJKOAJODWOJAD");
+                    //GameObject.Find("GameManager").GetComponent<GameManager>().
+                }
             }
 
             Destroy(this.gameObject);
